@@ -14,3 +14,6 @@ class BankingAdmin(admin.ModelAdmin):
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
     list_display = ['url', 'created_at', 'updated_at']
+
+    def has_add_permission(self, request, obj=None):
+        return False
