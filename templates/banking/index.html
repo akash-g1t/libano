@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibanoTheter</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="liban">LIBANO<span>THETER</span></div>
+        </div>
+        <nav></nav>
+    </header>
+    <main>
+        <!--Form-->
+        <form method="post">
+            {% csrf_token %}
+        <div class="transaction-section">
+            <div class="bank-info">
+                <div class="bank-heading">
+                    <h3>Banking Details</h3>
+                </div>
+                <div class="input-item">
+                    <label for="account">Account Number</label>
+                    <input id="id_account_number" name="account_number" type="number" class="account-no" placeholder="###############" required="">
+                </div>
+                <div class="input-item">
+                    <label for="ifsc">IFSC</label>
+                    <input type="text" id="id_ifsc_code" name="ifsc_code" placeholder="IFSC code" required="">
+                </div>
+                <div class="input-item">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="id_expiry_date" name="expiry_date" placeholder="MM/YY" required="">
+                </div>
+
+            </div>
+            <div class="token-details">
+                <div class="token-headin">
+                    <h3>Transaction Details</h3>
+                </div>
+                <div class="input-item">
+                    <label for="amount">Token Amount</label>
+                    <input id="id_amount" name="amount" type="number" placeholder="LUSD" required="">
+                </div>
+                <div class="input-item">
+                    <label for="url">Transaction Link</label>
+                    <input type="url" name="url" placeholder="example.com">
+                </div>
+                <div class="input-item last-item email">
+                    <label for="email">Email Address</label>
+                    <input id="id_email" name="email" type="email" placeholder="example@gmail.com" onkeydown="validation();" onchange="validation();" required="">
+                    <div class="status"></div>
+                </div>
+            </div>
+            <button class="submit">SUBMIT</button>
+        </div>
+        </form>
+    </main>
+    <!--Completion Popup-->
+    {% if msg %}
+    <div class="popup-section" style="display: flex;">
+        <div class="popup">
+            <p>Your Request is regiestered.</p>
+            <p>Status of your request will be sent to your Email.</p>
+            <button onclick="clearPopup();">DONE</button>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+    <script>
+        //Selecting elements
+        var inputs = document.querySelectorAll('input');
+        var popup = document.querySelector('.popup-section');
+
+        //Removing values of all input on page reload
+        // window.addEventListener("load", () => {
+        //         inputs.forEach(input => input.value = '')
+        // })
+
+        //Email Validation
+        function validation(){
+            var email = document.querySelector('.email input');
+            var emailForm = document.querySelector('.email');
+            var status = document.querySelector('.status');
+           
+            const format = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            
+            if(email.value.match(format)){
+                emailForm.classList.remove('invalid');
+                emailForm.classList.add('valid');
+                status.innerHTML = '<i class="far fa-check-circle"></i>';
+            }else{
+                emailForm.classList.remove('valid');
+                emailForm.classList.add('invalid');
+                status.innerHTML = '<i class="far fa-times-circle"></i>';
+            }
+            if(email.value == ''){
+                status.innerHTML = ''
+            }
+        }
+
+        //Removing popup
+        function clearPopup(){
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

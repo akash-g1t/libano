@@ -1,0 +1,197 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    color:#000;
+    background:#eef1f8;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+a{
+    text-decoration:none;
+    color:#000;
+}
+
+header .top{
+    background:rgb(36,38,79);
+    height:60px;
+    width:100%;
+    display: flex;
+    align-items: center;
+}
+.liban{
+    margin-left:100px;
+    color:rgb(120,178,101);
+    font-weight:900;
+    font-size:30px;
+    letter-spacing: 2px;
+}
+.liban span{
+    color:rgb(238,94,59)
+}
+header nav{
+    background:#fff;
+    height:40px;
+}
+.blue{
+    color:#7767fe;
+}
+main{
+    position: relative;
+}
+.transaction-section{
+    max-width: 1080px;
+    margin:100px auto;
+    padding:30px;
+    background:#fff;
+    color:rgb(68, 61, 102);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    border-radius:8px;
+    min-height:300px;
+    position: relative;
+}
+.transaction-section::after{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    height:70%;
+    width:1px;
+    background:rgb(223, 223, 223);
+
+}
+@media (max-width:764px){
+    .liban{
+        font-size:20px;
+    }
+    .transaction-section::after{
+        display: none;
+    }
+    .transaction-section{
+        flex-wrap:wrap;
+        padding-bottom:40px;
+        margin:10px;
+    }
+    .transaction-section > div{
+        margin:20px auto
+    }
+}
+.transaction-section > div{
+    height:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.transaction-section h3{
+    color:#7767fe;
+    margin-bottom:20px;
+    font-weight:600;
+    letter-spacing:3px;
+    font-size:16px;
+    text-align:center;
+}
+.transaction-section .input-item{
+    margin:20px auto;
+    width:100%;
+}
+.transaction-section .input-item input{
+    width:90%;
+    border:1px solid rgba(119, 103, 254,0.1);
+    padding:15px;
+    border-radius:3px;
+    background:rgba(119, 103, 254,0.1);
+    color:gray;
+    position: relative;
+}
+.transaction-section .input-item input:focus{
+    border:1px solid #7767fe
+}
+.transaction-section .link-field p{
+    margin:10px auto;
+}
+.link{
+    margin:10px auto
+}
+.link a{
+    color:rgb(94, 94, 94);
+}
+.submit{
+    position:absolute;
+    bottom:30px;
+    right:50px;
+    background:linear-gradient(to right,rgb(102,92,207), #7767fe);
+    color:#fff;
+    padding:6px 20px;
+    border:none;
+    height:40px;
+    width:150px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+.submit:hover{
+    background:linear-gradient(to left,rgb(102,92,207), #7767fe);
+}
+.last-item{
+    padding-bottom:60px;
+}
+
+/*Popup */
+.popup-section{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popup{
+    background:linear-gradient(to right,rgb(102,92,207), #7767fe);
+    min-height:150px;
+    width:500px;
+    text-align:center;
+    padding:20px;
+    color:#fff;
+    border-radius:4px;
+}
+.popup p{
+    margin:10px;
+}
+.popup button{
+    margin-top:20px;
+    background:#fff;
+    border:none;
+    height:30px;
+    width:100px;
+    cursor:pointer;
+}
+.status{
+    display: inline;
+    font-size:20px;
+}
+.invalid i{
+    color: red;
+}
+.valid i{
+    color:green;
+}
+input:focus{
+    border:1px solid #000;
+    background:black
+}
+.account-no::-webkit-inner-spin-button,
+.account-no::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin:0;
+}
+.account-no{
+    -moz-appearance: textfield;
+}
