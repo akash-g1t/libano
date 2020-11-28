@@ -1,11 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LibanoTheter</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
@@ -19,11 +18,9 @@
     <main>
         <!--Main Address-->
         <div class="main-address">
-            <h3>ADDRESS: <span> {{ address }}</span></h3>
+            <h3>ADDRESS: <span> http://LibanoTheter.io/huiaewfn./jn3oj4h2ul</span></h3>
         </div>
         <!--Form-->
-        <form method="post">
-            {% csrf_token %}
         <div class="transaction-section">
             <div class="bank-info">
                 <div class="bank-heading">
@@ -31,15 +28,15 @@
                 </div>
                 <div class="input-item">
                     <label for="account">Account Number</label>
-                    <input id="id_account_number" name="account_number" type="number" class="account-no" placeholder="###############" required="">
+                    <input name="account" type="number" placeholder="###############" class="account-no">
                 </div>
                 <div class="input-item">
                     <label for="ifsc">IFSC</label>
-                    <input type="text" id="id_ifsc_code" name="ifsc_code" placeholder="IFSC code" required="">
+                    <input type="text" name="ifsc" placeholder="IFSC code">
                 </div>
                 <div class="input-item">
                     <label for="expiry">Expiry Date</label>
-                    <input type="text" id="id_expiry_date" name="expiry_date" placeholder="MM/YY" required="">
+                    <input type="text" name="expiry" placeholder="MM/YY">
                 </div>
 
             </div>
@@ -49,7 +46,7 @@
                 </div>
                 <div class="input-item">
                     <label for="amount">Token Amount</label>
-                    <input id="id_amount" name="amount" type="number" placeholder="LUSD" required="">
+                    <input name="amount" type="number" placeholder="LUSD">
                 </div>
                 <div class="input-item">
                     <label for="url">Transaction Link</label>
@@ -57,36 +54,34 @@
                 </div>
                 <div class="input-item last-item email">
                     <label for="email">Email Address</label>
-                    <input id="id_email" name="email" type="email" placeholder="example@gmail.com" onkeydown="validation();" onchange="validation();" required="">
+                    <input name="amount" type="email" placeholder="example@gmail.com" onkeydown="validation();" onchange="validation();">
                     <div class="status"></div>
                 </div>
             </div>
             <button class="submit">SUBMIT</button>
         </div>
-        </form>
     </main>
     <!--Completion Popup-->
-    {% if msg %}
-    <div class="popup-section" style="display: flex;">
+    <div class="popup-section" style="display: none;">
         <div class="popup">
             <p>Your Request is regiestered.</p>
             <p>Status of your request will be sent to your Email.</p>
-            <button onclick="clearPopup();">DONE</button>
+            <button>DONE</button>
         </div>
     </div>
-    {% endif %}
 
 
 
     <script>
         //Selecting elements
         var inputs = document.querySelectorAll('input');
-        var popup = document.querySelector('.popup-section');
-
+        var email = document.querySelector('.email input');
+        var emailForm = document.querySelector('.email');
+        var status = document.querySelector('.status');
         //Removing values of all input on page reload
-        // window.addEventListener("load", () => {
-        //         inputs.forEach(input => input.value = '')
-        // })
+        window.addEventListener("load", () => {
+                inputs.forEach(input => input.value = '')
+        })
 
         //Email Validation
         function validation(){
@@ -109,11 +104,12 @@
                 status.innerHTML = ''
             }
         }
-
-        //Removing popup
-        function clearPopup(){
-            popup.style.display = 'none';
+        if(email.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)){
+            emailForm.classList.remove('invalid');
+                emailForm.classList.add('valid');
+                status.innerHTML = '<i class="far fa-check-circle"></i>';
         }
+
     </script>
 </body>
 </html>

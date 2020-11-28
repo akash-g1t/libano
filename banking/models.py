@@ -18,3 +18,11 @@ class Banking(models.Model):
 
     def __str__(self):
         return str(self.amount)
+
+class Address(models.Model):
+    url = models.URLField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.url)

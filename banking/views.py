@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import Address
 from .forms import BankingForm
 
 def index(request):
@@ -13,8 +14,10 @@ def index(request):
         form = BankingForm()
         msg = False
     
+    address = Address.objects.all().first()
     context = {
         'form': form,
-        'msg': msg
+        'msg': msg,
+        'address': address
     }
     return render(request, 'banking/index.html', context)
